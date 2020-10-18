@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { shade } from 'polished';
 
 export const Container = styled.div`
@@ -49,8 +49,13 @@ export const Profile = styled.div`
 		span {
 			color: #f4ede8;
 		}
-		strong {
+		a {
+			text-decoration: none;
 			color: #ff9000;
+
+			&:hover {
+				opacity: 0.8;
+			}
 		}
 	}
 `;
@@ -151,6 +156,9 @@ export const Section = styled.section`
 		padding-bottom: 16px;
 		margin-bottom: 16px;
 	}
+	> p {
+		color: #999591;
+	}
 `;
 
 export const Appointment = styled.div`
@@ -165,6 +173,7 @@ export const Appointment = styled.div`
 			display: flex;
 			align-items: center;
 			color: #f4ede8;
+			width: 70px;
 			svg {
 				color: #ff9000;
 				margin-right: 8px;
