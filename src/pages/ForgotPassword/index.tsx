@@ -1,15 +1,15 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { FiLogIn, FiMail } from 'react-icons/fi';
-import logoImg from '../../assets/logo.svg';
-import { Container, Content, AnimationContainer, Background } from './styles';
 import { Form } from '@unform/web';
-import Input from '../../components/Input';
-import Button from '../../components/Button';
 import { FormHandles } from '@unform/core';
-import getValidationsErros from '../../utils/getValidationsErrors';
-import { useToast } from '../../hooks/toast';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
+import logoImg from '../../assets/logo.svg';
+import { Container, Content, AnimationContainer, Background } from './styles';
+import Input from '../../components/Input';
+import Button from '../../components/Button';
+import getValidationsErros from '../../utils/getValidationsErrors';
+import { useToast } from '../../hooks/toast';
 import api from '../../services/api';
 
 interface ForgotPasswordFormData {
@@ -36,8 +36,6 @@ const ForgotPassword: React.FC = () => {
 			await api.post('/password/forgot', {
 				email: data.email,
 			});
-			// recuperação de senha
-			// history.push('/dashboard');
 			addToast({
 				type: 'sucess',
 				title: 'Email de recuperação de senha enviado.',
@@ -54,7 +52,6 @@ const ForgotPassword: React.FC = () => {
 				title: 'Erro na recuperação de senha',
 				description: 'Ocorreu erro ao tentar realizar a recuperação de senha, tente novamente.',
 			});
-
 		} finally {
 			setLoading(false);
 		}

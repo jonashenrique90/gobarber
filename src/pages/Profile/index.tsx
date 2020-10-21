@@ -2,12 +2,12 @@ import React, { useCallback, useRef, ChangeEvent } from 'react';
 import { FiArrowLeft, FiUser, FiMail, FiLock, FiCamera } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
+import * as Yup from 'yup';
+import { Link, useHistory } from 'react-router-dom';
 import { Container, Content, AvatarInput } from './styles';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-import * as Yup from 'yup';
 import getValidationsErros from '../../utils/getValidationsErrors';
-import { Link, useHistory } from 'react-router-dom';
 import api from '../../services/api';
 import { useToast } from '../../hooks/toast';
 import { useAuth } from '../../hooks/auth';
@@ -30,7 +30,7 @@ const Profile: React.FC = () => {
 		if (event.target.files) {
 			const data = new FormData();
 			data.append('avatar', event.target.files[0]);
-			api.patch('/users/avatar', data).then((response) => {
+				api.patch('/users/avatar', data).then(response => {
 				updateUser(response.data);
 				addToast({
 					type: 'sucess',
@@ -127,7 +127,6 @@ const Profile: React.FC = () => {
 							<FiCamera></FiCamera>
 							<input type="file" id="avatar" onChange={handleAvatarChange}/>
 						</label>
-						
 					</AvatarInput>
 					<h1>Meu Perfil</h1>
 					<Input name="name" icon={FiUser} type="text" placeholder="Nome" />
@@ -138,7 +137,6 @@ const Profile: React.FC = () => {
 					<Button type="submit">Confirmar mudanças</Button>
 				</Form>
 			</Content>
-
 		</Container>
 	)
 }

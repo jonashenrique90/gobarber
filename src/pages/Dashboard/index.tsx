@@ -3,9 +3,20 @@ import { Link } from 'react-router-dom';
 import { isToday, format, parseISO, isAfter } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import DayPicker, { DayModifiers } from 'react-day-picker';
-import { Container, Header, HeaderContent, Profile, Content, Schedule, Calendar, NextAppointment, Section, Appointment } from './styles';
-import logoImg from '../../assets/logo.svg';
 import { FiClock, FiPower } from 'react-icons/fi';
+import {
+	Container,
+	Header,
+	HeaderContent,
+	Profile,
+	Content,
+	Schedule,
+	Calendar,
+	NextAppointment,
+	Section,
+	Appointment,
+} from './styles';
+import logoImg from '../../assets/logo.svg';
 import { useAuth } from '../../hooks/auth';
 import 'react-day-picker/lib/style.css';
 import api from '../../services/api';
@@ -22,11 +33,23 @@ interface Appointment {
 	user: {
 		name: string;
 		avatar_url: string;
-	}
+	};
 }
 
-
-const months = ['Janeiro','Fevereiro','MArço','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+const months = [
+	'Janeiro',
+	'Fevereiro',
+	'MArço',
+	'Abril',
+	'Maio',
+	'Junho',
+	'Julho',
+	'Agosto',
+	'Setembro',
+	'Outubro',
+	'Novembro',
+	'Dezembro',
+];
 
 const Dashboard: React.FC = () => {
 	const { signOut, user } = useAuth();
@@ -94,10 +117,8 @@ const Dashboard: React.FC = () => {
 	const nextAppointment = useMemo(() => {
 		return appointments.find(appointment => 
 			isAfter(parseISO(appointment.date), new Date()),
-		);		
+		);
 	}, [appointments]);
-	console.log(nextAppointment);
-	
 
 	useEffect(() => {
 		api.get<Appointment[]>('/appointments/me', {
@@ -122,9 +143,9 @@ const Dashboard: React.FC = () => {
 		<Container>
 			<Header>
 				<HeaderContent>
-					<img src={logoImg} alt="GoBarbar"/>
+					<img src={logoImg} alt="GoBarbar" />
 					<Profile>
-						<img src={user.avatar_url} alt={user.name}/>
+						<img src={user.avatar_url} alt={user.name} />
 						<div>
 							<span>Bem vindo,</span>
 							<Link to="/profile">
@@ -149,7 +170,7 @@ const Dashboard: React.FC = () => {
 						<NextAppointment>
 							<strong>Agendamento a seguir</strong>
 							<div>
-								<img src={nextAppointment.user.avatar_url} alt={nextAppointment.user.name}/>
+								<img src={nextAppointment.user.avatar_url} alt={nextAppointment.user.name} />
 								<strong>{nextAppointment.user.name}</strong>
 								<span>
 									<FiClock>
@@ -172,7 +193,7 @@ const Dashboard: React.FC = () => {
 									{appointment.hourFormatted}
 									</span>
 								<div>
-									<img src={appointment.user.avatar_url} alt={appointment.user.name}/>
+									<img src={appointment.user.avatar_url} alt={appointment.user.name} />
 									<strong>{appointment.user.name}</strong>
 								</div>
 								</Appointment>
@@ -192,7 +213,7 @@ const Dashboard: React.FC = () => {
 										{appointment.hourFormatted}
 									</span>
 									<div>
-										<img src={appointment.user.avatar_url} alt={appointment.user.name}/>
+										<img src={appointment.user.avatar_url} alt={appointment.user.name} />
 										<strong>{appointment.user.name}</strong>
 									</div>
 								</Appointment>

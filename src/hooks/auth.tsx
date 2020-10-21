@@ -43,7 +43,7 @@ const AuthProvider: React.FC = ({ children }) => {
 		const response = await api.post('sessions', {
 			email,
 			password,
-		})
+		});
 		const { token, user } = response.data;
 		localStorage.setItem('@GoBarber:token', token);
 		localStorage.setItem('@GoBarber:user', JSON.stringify(user));
@@ -51,7 +51,6 @@ const AuthProvider: React.FC = ({ children }) => {
 		api.defaults.headers.authorization = `Bearer ${token}`;
 
 		setData({ token, user });
-
 	}, []);
 
 	const signOut = useCallback(() => {
@@ -66,7 +65,7 @@ const AuthProvider: React.FC = ({ children }) => {
 		setData({
 			token: data.token,
 			user,
-		})
+		});
 	}, [setData, data.token]);
 
 	return (
@@ -78,10 +77,8 @@ const AuthProvider: React.FC = ({ children }) => {
 
 function useAuth(): AuthContextData {
 	const context = useContext(AuthContext);
-	if (!context) {
-		throw new Error('useAuth must be used within a AuthProvider');
-	}
+
 	return context;
 }
 
-export { AuthProvider, useAuth }
+export { AuthProvider, useAuth };

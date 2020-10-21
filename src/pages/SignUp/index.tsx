@@ -2,13 +2,13 @@ import React, { useCallback, useRef } from 'react';
 import { FiArrowLeft, FiUser, FiMail, FiLock } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
+import { Link, useHistory } from 'react-router-dom';
+import * as Yup from 'yup';
 import logoImg from '../../assets/logo.svg';
 import { Container, Content, AnimationContainer, Background } from './styles';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-import * as Yup from 'yup';
 import getValidationsErros from '../../utils/getValidationsErrors';
-import { Link, useHistory } from 'react-router-dom';
 import api from '../../services/api';
 import { useToast } from '../../hooks/toast';
 

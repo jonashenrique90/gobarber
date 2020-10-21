@@ -29,7 +29,6 @@ export const Container = styled.div`
 			left: 3%;
 			transform: translateX(-3%);
 			position: absolute;
-
 		}
 	}
 	&:hover span {
